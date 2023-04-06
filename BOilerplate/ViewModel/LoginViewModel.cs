@@ -1,7 +1,10 @@
-﻿using System;
+﻿using BOilerplate.Model;
+using System;
 using System.Collections.Generic;
 using System.Security;
+using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Windows.Input;
 
 namespace BOilerplate.ViewModel
@@ -12,6 +15,8 @@ namespace BOilerplate.ViewModel
         private SecureString _password;
         private string _errorMessage;
         private bool _isVisible = true;
+
+        private readonly IUserRepository _userRepository;
 
        public string Username
         {
@@ -86,7 +91,18 @@ namespace BOilerplate.ViewModel
 
         private void ExecuteLoginCommand(object obj)
         {
-            throw new NotImplementedException();
+            var networkCredential = new System.Net.NetworkCredential(Username, Password);
+            var validUser = _userRepository.AuthenticateUser(networkCredential);
+            if (validUser)
+            {
+                Thread.CurrentPrincipal = new GenericPrincipal(
+    new GenericIdentity(Username), null);
+                IsVisible = false;
+            }
+            else
+            {
+                ErrorMessage = "Invalid username and password";
+            }
         }
     }
 }

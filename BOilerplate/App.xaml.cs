@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BOilerplate.View;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,18 @@ namespace BOilerplate
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            var loginView = new Login();
+            loginView.Show();
+            loginView.IsVisibleChanged += (s, ev) =>{
+                if(loginView.IsVisible==false && loginView.IsLoaded)
+                {
+                    var mainView = new MainWindow();
+                    mainView.Show();
+                    loginView.Close();
+                }
+            }
+        }
     }
 }
