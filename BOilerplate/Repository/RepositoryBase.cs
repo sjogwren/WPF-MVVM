@@ -10,7 +10,7 @@ namespace BOilerplate.Repository
         private readonly string _connectinSrtring;
         public RepositoryBase()
         {
-            _connectinSrtring = "server=DESKTOP-EERLAR5\\SQLEXPRESS;database=database1;Integrated Security=SSPI;";
+            _connectinSrtring = "server=DESKTOP-EERLAR5\\SQLEXPRESS;database=database2;Integrated Security=SSPI;";
 
         }
         protected SqlConnection GetConnection()

@@ -1,6 +1,8 @@
 ﻿using BOilerplate.Model;
+using BOilerplate.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Net;
 using System.Text;
@@ -22,7 +24,7 @@ namespace BOilerplate.Repository
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from User where username=@username and password=@password";
+                command.CommandText = "select * from [User] where username=@username and password=@password";
                 command.Parameters.Add("@username", System.Data.SqlDbType.VarChar).Value=networkCredential.UserName;
                 command.Parameters.Add("@password", System.Data.SqlDbType.VarChar).Value = networkCredential.Password;
                 validUser = command.ExecuteScalar() == null ? false : true; 
@@ -31,9 +33,41 @@ namespace BOilerplate.Repository
             return validUser;
         }
 
-        public IEnumerable<UserModel> GetAll()
+        public List<UserModel> GetAll()
         {
-            throw new NotImplementedException();
+            List<UserModel> userList = new List<UserModel>();
+            using (var connection = GetConnection())
+            {
+                const string sql = @"SELECT * FROM [USER]";
+                using (SqlDataAdapter a = new SqlDataAdapter(sql, connection))
+                {
+
+                    DataTable t = new DataTable();
+                    a.Fill(t);
+
+                    try
+                    {
+                        for (int i = 0; i < t.Rows.Count; i++)
+                        {
+                            UserModel user = new UserModel();
+                            user.Id = t.Rows[i]["Id"].ToString();
+                            user.username = t.Rows[i]["username"].ToString();
+                            user.password = t.Rows[i]["password"].ToString();
+                            user.name = t.Rows[i]["name"].ToString();
+                            user.lastname = t.Rows[i]["lastname"].ToString();
+                            user.email = t.Rows[i]["email"].ToString();
+                            userList.Add(user);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+
+                }
+
+            }
+            return userList;
         }
 
         public UserModel GetById(int ID)
@@ -43,7 +77,32 @@ namespace BOilerplate.Repository
 
         public UserModel GetUserByName(string name)
         {
-            throw new NotImplementedException();
+            UserModel user = null;
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select * from [User] where username=@username";
+                command.Parameters.Add("@username", System.Data.SqlDbType.VarChar).Value = name;
+                using(var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        user = new UserModel()
+                        {
+                            Id = reader[0].ToString(),
+                            username = reader[1].ToString(),
+                            password = reader[2].ToString(),
+                            name = reader[3].ToString(),
+                            lastname = reader[4].ToString(),
+                            email = reader[5].ToString()
+                        };
+                    }
+                }
+
+            }
+            return user;
         }
 
         public void Remove(int Id)

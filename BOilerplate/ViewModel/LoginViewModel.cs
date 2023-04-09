@@ -6,18 +6,18 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Windows.Input;
+using BOilerplate.Repository;
 
 namespace BOilerplate.ViewModel
 {
     public class LoginViewModel :ViewModelBase
     {
         private string _username;
-        private SecureString _password;
+        private string _password;
         private string _errorMessage;
         private bool _isVisible = true;
 
-        private readonly IUserRepository _userRepository;
-
+        private IUserRepository _userRepository;
        public string Username
         {
             get
@@ -31,7 +31,7 @@ namespace BOilerplate.ViewModel
             }
         }
 
-        public SecureString Password
+        public string Password
         {
             get
             {
@@ -74,6 +74,7 @@ namespace BOilerplate.ViewModel
 
         public LoginViewModel()
         {
+            _userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand); 
         }
 

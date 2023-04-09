@@ -13,6 +13,6 @@ namespace BOilerplate.Model
         void Remove(int Id);
         UserModel GetById(int ID);
         UserModel GetUserByName(string name);
-        IEnumerable<UserModel> GetAll();
+        List<UserModel> GetAll();
     }
 }

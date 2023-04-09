@@ -99,11 +99,9 @@
             <TextBox x:Name="txtUsername" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" FontSize="13"  Height="28"></TextBox>
 
             <TextBlock Text="Password" HorizontalAlignment="Left"/>
-            <customControls:BindablePasswordBox Password="{Binding Password,UpdateSourceTrigger=PropertyChanged}">
-                
-            </customControls:BindablePasswordBox>
+            <customControls:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></customControls:BindablePasswordBox>
             <Button x:Name="btnLogin" Command="{Binding LoginCommand}" Content="Login" Grid.Column="2" Margin="0,50,0,0"></Button>
-
+            <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Left"></TextBlock>
         </StackPanel>
     </Grid>
 </Window>

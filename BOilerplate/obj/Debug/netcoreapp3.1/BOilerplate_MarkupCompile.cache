@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\zaino\source\repos\BOilerplate\BOilerplate\App.xaml
-348233016
+7287544640
 
-81188757915
-192-1533232326
-CustomControls\BindablePasswordBox.xaml;MainWindow.xaml;View\Login.xaml;
+18-1867436718
+201968707795
+CustomControls\BindablePasswordBox.xaml;MainWindow.xaml;Styles\ButtonColors.xaml;Styles\UIColors.xaml;View\Customers.xaml;View\Login.xaml;View\MainView.xaml;
 
 False
 

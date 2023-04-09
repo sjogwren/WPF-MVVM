@@ -20,13 +20,13 @@ namespace BOilerplate.CustomControls
     public partial class BindablePasswordBox : UserControl
     {
         public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(SecureString), typeof(BindablePasswordBox));
+            DependencyProperty.Register("Password", typeof(string), typeof(BindablePasswordBox));
 
-        public SecureString Password
+        public string Password
         {
             get
             {
-                return (SecureString)GetValue(PasswordProperty);
+                return (string)GetValue(PasswordProperty);
 
             }
             set
@@ -42,7 +42,7 @@ namespace BOilerplate.CustomControls
 
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            Password = txtPassword.SecurePassword;
+            Password = txtPassword.Password;
         }
     }
 }

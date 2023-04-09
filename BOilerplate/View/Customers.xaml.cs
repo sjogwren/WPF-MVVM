@@ -1,0 +1,28 @@
+﻿using BOilerplate.Model;
+using BOilerplate.Repository;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace BOilerplate.View
+{
+    /// <summary>
+    /// Interaction logic for Customers.xaml
+    /// </summary>
+    public partial class Customers : UserControl
+    {
+        public Customers()
+        {
+            InitializeComponent();
+        }
+    }
+}
