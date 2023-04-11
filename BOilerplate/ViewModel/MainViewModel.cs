@@ -12,6 +12,7 @@ namespace BOilerplate.ViewModel
         //Fields
         private UserAccountModel _currentUserAccount;
         private CustomerViewModel _customerViewModel;
+        private NewCustomerViewModel _newCustomerViewModel;
         private ViewModelBase _currentChildView;
         private string _caption;
         private IconChar _icon;
@@ -29,6 +30,19 @@ namespace BOilerplate.ViewModel
             {
                 _customerViewModel = value;
                 OnPropertyChanged(nameof(CustomerViewModel));
+            }
+        }
+        public NewCustomerViewModel NewCustomerViewModel
+        {
+            get
+            {
+                return _newCustomerViewModel;
+            }
+
+            set
+            {
+                _newCustomerViewModel = value;
+                OnPropertyChanged(nameof(NewCustomerViewModel));
             }
         }
         //Properties
@@ -91,6 +105,7 @@ namespace BOilerplate.ViewModel
         //--> Commands
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowCustomerViewCommand { get; }
+        public ICommand ShowNewCustomerViewCommand { get; }
 
         public MainViewModel()
         {
@@ -98,9 +113,11 @@ namespace BOilerplate.ViewModel
             CurrentUserAccount = new UserAccountModel();
             CustomerViewModel = new CustomerViewModel();
 
+
             //Initialize commands
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
+            ShowNewCustomerViewCommand = new ViewModelCommand(ExecuteShowNewCustomerViewCommand);
 
             //Default view
             ExecuteShowHomeViewCommand(null);
@@ -108,10 +125,17 @@ namespace BOilerplate.ViewModel
             LoadCurrentUserData();
         }
 
+        private void ExecuteShowNewCustomerViewCommand(object obj)
+        {
+            CurrentChildView = new NewCustomerViewModel();
+            Caption = "New Customers";
+            Icon = IconChar.UserGroup;
+        }
+
         private void ExecuteShowCustomerViewCommand(object obj)
         {
             CurrentChildView = new CustomerViewModel();
-            Caption = "Customerssssssssssss";
+            Caption = "Customers";
             Icon = IconChar.UserGroup;
         }
 

@@ -38,3 +38,5 @@ C:\Users\zaino\source\repos\BOilerplate\BOilerplate\obj\Debug\netcoreapp3.1\Styl
 C:\Users\zaino\source\repos\BOilerplate\BOilerplate\bin\Debug\netcoreapp3.1\FontAwesome.Sharp.dll
 C:\Users\zaino\source\repos\BOilerplate\BOilerplate\obj\Debug\netcoreapp3.1\View\Customers.g.cs
 C:\Users\zaino\source\repos\BOilerplate\BOilerplate\obj\Debug\netcoreapp3.1\View\Customers.baml
+C:\Users\zaino\source\repos\BOilerplate\BOilerplate\obj\Debug\netcoreapp3.1\View\NewCustomer.g.cs
+C:\Users\zaino\source\repos\BOilerplate\BOilerplate\obj\Debug\netcoreapp3.1\View\NewCustomer.baml

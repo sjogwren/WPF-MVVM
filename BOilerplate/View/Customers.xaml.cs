@@ -24,5 +24,23 @@ namespace BOilerplate.View
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Alert");
+            var parentWindow = Window.GetWindow(this);
+            if (parentWindow.GetType() == typeof(MainView))
+            {
+                (parentWindow as MainView).CustomerControl.Visibility = Visibility.Collapsed;
+                (parentWindow as MainView).NewCustomerContentControl.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var code = button.Tag;
+            MessageBox.Show(code.ToString());
+        }
     }
 }

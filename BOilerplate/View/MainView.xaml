@@ -210,10 +210,19 @@
 
                     </Grid>
                     <!--Content section / Child views-->
-                    <ContentControl Content="{Binding CurrentChildView}" Grid.Row="2" Margin="25">
+                    <ContentControl x:Name="CustomerControl" Content="{Binding CurrentChildView}" Grid.Row="2" Margin="25">
                         <ContentControl.Resources>
                             <DataTemplate DataType="{x:Type viewModel:CustomerViewModel}">
                                 <local:Customers></local:Customers>
+                            </DataTemplate>
+                            
+                        </ContentControl.Resources>
+                    </ContentControl>
+                    <!--Content section / Child views-->
+                    <ContentControl x:Name="NewCustomerContentControl" Visibility="Collapsed" Content="{Binding CurrentChildView}" Grid.Row="2" Margin="25">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type viewModel:NewCustomerViewModel}">
+                                <local:NewCustomer></local:NewCustomer>
                             </DataTemplate>
                         </ContentControl.Resources>
                     </ContentControl>

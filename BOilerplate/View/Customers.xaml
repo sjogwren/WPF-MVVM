@@ -26,7 +26,7 @@
                         Grid.Column="0">
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
 
-                <TextBox Text="Search..."   
+                <!--<TextBox Text="Search..."   
                     FontSize="13"
                          Height="24"
                            Width="300"
@@ -38,7 +38,7 @@
                              BorderBrush="{StaticResource plainTextColor3}"
                              BorderThickness="0,0,0,1"                             
                              VerticalContentAlignment="Center"
-                             Margin="5,5,0,0"></TextBox>
+                             Margin="5,5,0,0"></TextBox>-->
 
             </StackPanel>
 
@@ -49,7 +49,7 @@
                             Cursor="Hand"
                             BorderThickness="0"
                             Foreground="White"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top" Click="Button_Click">
 
                 <Button.Style>
                     <Style TargetType="Button">
@@ -89,6 +89,13 @@
                     <DataGridTextColumn Header="Surname" Width="*" Binding="{Binding lastname}"/>
                     <DataGridTextColumn Header="Username" Width="*" Binding="{Binding username}"/>
                     <DataGridTextColumn Header="Email" Width="*" Binding="{Binding email}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="Button_Click_1" Tag="{Binding Id}">Edit</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

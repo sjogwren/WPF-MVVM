@@ -13,7 +13,26 @@ namespace BOilerplate.Repository
     {
         public void Add(UserModel model)
         {
-            throw new NotImplementedException();
+            String query = "INSERT INTO [User] (username,password,name,lastname,email) VALUES (@username, @password, @name, @lastname, @email)";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                //a shorter syntax to adding parameters
+                command.Parameters.Add("@username", SqlDbType.NChar).Value = model.username;
+
+                command.Parameters.Add("@password", SqlDbType.NChar).Value = model.password;
+
+                //a longer syntax for adding parameters
+                command.Parameters.Add("@name", SqlDbType.NChar).Value = model.name;
+
+                command.Parameters.Add("@lastname", SqlDbType.NChar).Value = model.lastname;
+
+                command.Parameters.Add("@email", SqlDbType.NChar).Value  = model.email;
+
+                //make sure you open and close(after executing) the connection
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
         public bool AuthenticateUser(NetworkCredential networkCredential)
